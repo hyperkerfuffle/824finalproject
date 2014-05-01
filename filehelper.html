@@ -1,0 +1,18 @@
+<input type="file" id="files" name="file" />
+<output id="list"></output>
+
+<script>
+  function handleFileSelect(evt) {
+    var f = evt.target.file[0]; // FileList object
+    console.log("f is" + f);
+    var output = [];
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
+    
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
